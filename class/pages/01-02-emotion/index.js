@@ -1,11 +1,13 @@
-import { Email, EmailInput } from "../../styles/emotion";
+import { Label, Input, Wrapper } from "../../styles/emotion";
 
 export default function EmotionPage() {
   return (
-    <div>
-      <Email>이메일</Email>
-      <EmailInput type="text"></EmailInput>
-      <button>클릭하세요!!</button>
-    </div>
+    <Wrapper>
+      <h1>로그인</h1>
+      <Label>이메일</Label>
+      <Input type="text"></Input>
+      <Label>비밀번호</Label>
+      <Input type="text"></Input>
+    </Wrapper>
   );
 }
