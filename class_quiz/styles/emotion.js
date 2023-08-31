@@ -98,3 +98,8 @@ export const FooterText = styled.div`
   font-size: 16px;
   color: #adadad;
 `;
+
+export const ErrMessage = styled.div`
+  color: red;
+  font-size: 10px;
+`;
