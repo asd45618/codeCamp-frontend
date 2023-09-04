@@ -14,7 +14,7 @@ export const WrapperTop = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 80px;
+  margin-top: 40px;
 `;
 
 export const Top = styled.div`
@@ -24,14 +24,13 @@ export const Top = styled.div`
 export const Contents = styled.div`
   font-size: 16px;
   font-weight: 500;
+  margin-top: 40px;
 `;
 
 export const HalfInput = styled.input`
   width: 100%;
   height: 52px;
-  color: #bdbdbd;
   margin-top: 16px;
-  margin-bottom: 40px;
 `;
 
 export const WrapperContents = styled.div`
@@ -42,13 +41,11 @@ export const FullInput = styled.input`
   width: 100%;
   height: 52px;
   margin-top: 16px;
-  margin-bottom: 40px;
 `;
 
 export const FullInputContent = styled.input`
   width: 100%;
   height: 480px;
-  margin-bottom: 40px;
   margin-top: 16px;
 `;
 
@@ -99,4 +96,10 @@ export const RegisterButton = styled.button`
   background-color: #ffd600;
   font-size: 16px;
   border: none;
+  cursor: pointer;
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 8px;
 `;
