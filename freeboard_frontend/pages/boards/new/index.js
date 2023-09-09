@@ -17,6 +17,15 @@ import {
   RegisterButton,
   ErrorMessage,
 } from "../../../styles/emotion";
+import { gql, useMutation } from "@apollo/client";
+
+const CREATE_BOARD = gql`
+  mutation createBoard($createBoardInput: CreateBoardInput!) {
+    createBoard(createBoardInput: $createBoardInput) {
+      _id
+    }
+  }
+`;
 
 export default function New() {
   const [writer, setWriter] = useState("");
@@ -28,6 +37,8 @@ export default function New() {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorTitle, setErrorTitle] = useState("");
   const [errorContent, setErrorContent] = useState("");
+
+  const [createBoard] = useMutation(CREATE_BOARD);
 
   const OnchangeWriter = (event) => {
     setWriter(event.target.value);
@@ -45,7 +56,7 @@ export default function New() {
     setContent(event.target.value);
   };
 
-  const OnclickRegister = () => {
+  const OnclickRegister = async () => {
     if (!writer) {
       setErrorWriter("작성자를 입력해 주세요.");
     } else if (writer) {
@@ -67,7 +78,17 @@ export default function New() {
       setErrorContent("");
     }
     if (writer && password && title && content) {
-      alert("등록이 완료되었습니다.");
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer,
+            password,
+            title,
+            contents: content,
+          },
+        },
+      });
+      console.log(result);
     }
   };
 
