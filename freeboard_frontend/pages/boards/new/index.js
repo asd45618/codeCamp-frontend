@@ -18,6 +18,7 @@ import {
   ErrorMessage,
 } from "../../../styles/emotion";
 import { gql, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -39,6 +40,8 @@ export default function New() {
   const [errorContent, setErrorContent] = useState("");
 
   const [createBoard] = useMutation(CREATE_BOARD);
+
+  const router = useRouter();
 
   const OnchangeWriter = (event) => {
     setWriter(event.target.value);
@@ -78,17 +81,22 @@ export default function New() {
       setErrorContent("");
     }
     if (writer && password && title && content) {
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            writer,
-            password,
-            title,
-            contents: content,
+      try {
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              writer,
+              password,
+              title,
+              contents: content,
+            },
           },
-        },
-      });
-      console.log(result);
+        });
+        console.log(result);
+        router.push(`/boards/${result.data.createBoard._id}`);
+      } catch (error) {
+        alert(error.message);
+      }
     }
   };
 
