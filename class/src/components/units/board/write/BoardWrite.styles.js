@@ -7,3 +7,7 @@ export const RedInput = styled.input`
 export const BlueButton = styled.button`
   background-color: blue;
 `;
+
+export const GreenInput = styled.input`
+  border-color: green;
+`;
