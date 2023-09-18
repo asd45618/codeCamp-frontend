@@ -1,32 +1,21 @@
-import {
-  Wrapper,
-  Image2,
-  WrapperHeader,
-  HeaderInfo,
-  Writer,
-  Time,
-  WriterTime,
-  Body,
-  BodyTitle,
-  BodyContents,
-} from "./BoardDetail.styles";
+import * as S from "./BoardDetail.styles";
 
 export default function BoardDetailUI(props) {
   return (
-    <Wrapper>
-      <WrapperHeader>
-        <HeaderInfo>
-          <Image2></Image2>
-          <WriterTime>
-            <Writer>{props.data?.fetchBoard.writer}</Writer>
-            <Time>{props.data?.fetchBoard.createdAt}</Time>
-          </WriterTime>
-        </HeaderInfo>
-      </WrapperHeader>
-      <Body>
-        <BodyTitle>{props.data?.fetchBoard.title}</BodyTitle>
-        <BodyContents>{props.data?.fetchBoard.contents}</BodyContents>
-      </Body>
-    </Wrapper>
+    <S.Wrapper>
+      <S.WrapperHeader>
+        <S.HeaderInfo>
+          <S.Image2></S.Image2>
+          <S.WriterTime>
+            <S.Writer>{props.data?.fetchBoard.writer}</S.Writer>
+            <S.Time>{props.data?.fetchBoard.createdAt}</S.Time>
+          </S.WriterTime>
+        </S.HeaderInfo>
+      </S.WrapperHeader>
+      <S.Body>
+        <S.BodyTitle>{props.data?.fetchBoard.title}</S.BodyTitle>
+        <S.BodyContents>{props.data?.fetchBoard.contents}</S.BodyContents>
+      </S.Body>
+    </S.Wrapper>
   );
 }

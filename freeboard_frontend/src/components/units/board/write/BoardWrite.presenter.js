@@ -1,93 +1,81 @@
-import {
-  Wrapper,
-  WrapperTop,
-  Top,
-  HalfInput,
-  Contents,
-  WrapperContents,
-  FullInput,
-  FullInputContent,
-  PostCode,
-  PostCodeInput,
-  PostCodeButton,
-  PictureDiv,
-  Picture,
-  Radio,
-  RegisterButton,
-  ErrorMessage,
-} from "./BoardWrite.styles";
+import * as S from "./BoardWrite.styles";
 
 export default function BoardWriteUI(props) {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <h1>게시물 등록</h1>
-      <WrapperTop>
-        <Top>
-          <Contents>작성자</Contents>
-          <HalfInput
+      <S.WrapperTop>
+        <S.Top>
+          <S.Contents>작성자</S.Contents>
+          <S.HalfInput
             type="text"
             placeholder="이름을 적어주세요."
             onChange={props.OnchangeWriter}
-          ></HalfInput>
-          <ErrorMessage>{props.errorWriter}</ErrorMessage>
-        </Top>
-        <Top>
-          <Contents>비밀번호</Contents>
-          <HalfInput
+          ></S.HalfInput>
+          <S.ErrorMessage>{props.errorWriter}</S.ErrorMessage>
+        </S.Top>
+        <S.Top>
+          <S.Contents>비밀번호</S.Contents>
+          <S.HalfInput
             type="password"
             placeholder="비밀번호를 입력해주세요."
             onChange={props.OnchangePassword}
-          ></HalfInput>
-          <ErrorMessage>{props.errorPassword}</ErrorMessage>
-        </Top>
-      </WrapperTop>
-      <WrapperContents>
-        <Contents>제목</Contents>
-        <FullInput
+          ></S.HalfInput>
+          <S.ErrorMessage>{props.errorPassword}</S.ErrorMessage>
+        </S.Top>
+      </S.WrapperTop>
+      <S.WrapperContents>
+        <S.Contents>제목</S.Contents>
+        <S.FullInput
           type="text"
           placeholder="제목을 입력해 주세요."
           onChange={props.OnChangeTitle}
-        ></FullInput>
-        <ErrorMessage>{props.errorTitle}</ErrorMessage>
-      </WrapperContents>
-      <WrapperContents>
-        <Contents>내용</Contents>
-        <FullInputContent
+        ></S.FullInput>
+        <S.ErrorMessage>{props.errorTitle}</S.ErrorMessage>
+      </S.WrapperContents>
+      <S.WrapperContents>
+        <S.Contents>내용</S.Contents>
+        <S.FullInputContent
           type="text"
           placeholder="내용을 작성해 주세요."
           onChange={props.OnchangeContent}
-        ></FullInputContent>
-        <ErrorMessage>{props.errorContent}</ErrorMessage>
-      </WrapperContents>
-      <WrapperContents>
-        <Contents>주소</Contents>
-        <PostCode>
-          <PostCodeInput type="number"></PostCodeInput>
-          <PostCodeButton>우편번호 검색</PostCodeButton>
-        </PostCode>
-        <FullInput type="text"></FullInput>
-        <FullInput type="text"></FullInput>
-      </WrapperContents>
-      <WrapperContents>
-        <Contents>유튜브</Contents>
-        <FullInput type="text" placeholder="링크를 복사해 주세요."></FullInput>
-      </WrapperContents>
-      <WrapperContents>
-        <Contents>사진 첨부</Contents>
-        <PictureDiv>
-          <Picture></Picture>
-          <Picture></Picture>
-          <Picture></Picture>
-        </PictureDiv>
-      </WrapperContents>
-      <WrapperContents>
-        <Contents>메인 설정</Contents>
-        <Radio type="radio" name="main" value="유튜브" />
+        ></S.FullInputContent>
+        <S.ErrorMessage>{props.errorContent}</S.ErrorMessage>
+      </S.WrapperContents>
+      <S.WrapperContents>
+        <S.Contents>주소</S.Contents>
+        <S.PostCode>
+          <S.PostCodeInput type="number"></S.PostCodeInput>
+          <S.PostCodeButton>우편번호 검색</S.PostCodeButton>
+        </S.PostCode>
+        <S.FullInput type="text"></S.FullInput>
+        <S.FullInput type="text"></S.FullInput>
+      </S.WrapperContents>
+      <S.WrapperContents>
+        <S.Contents>유튜브</S.Contents>
+        <S.FullInput
+          type="text"
+          placeholder="링크를 복사해 주세요."
+        ></S.FullInput>
+      </S.WrapperContents>
+      <S.WrapperContents>
+        <S.Contents>사진 첨부</S.Contents>
+        <S.PictureDiv>
+          <S.Picture></S.Picture>
+          <S.Picture></S.Picture>
+          <S.Picture></S.Picture>
+        </S.PictureDiv>
+      </S.WrapperContents>
+      <S.WrapperContents>
+        <S.Contents>메인 설정</S.Contents>
+        <S.Radio type="radio" name="main" value="유튜브" />
         유튜브
-        <Radio type="radio" name="main" value="사진" />
+        <S.Radio type="radio" name="main" value="사진" />
         사진
-      </WrapperContents>
-      <RegisterButton onClick={props.OnclickRegister}>등록하기</RegisterButton>
-    </Wrapper>
+      </S.WrapperContents>
+      <S.RegisterButton onClick={props.OnclickRegister}>
+        등록하기
+      </S.RegisterButton>
+    </S.Wrapper>
   );
 }
