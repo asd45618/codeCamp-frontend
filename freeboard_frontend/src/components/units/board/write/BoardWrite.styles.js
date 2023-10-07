@@ -93,7 +93,7 @@ export const Radio = styled.input`
 export const RegisterButton = styled.button`
   width: 179px;
   height: 52px;
-  background-color: #ffd600;
+  background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
   font-size: 16px;
   border: none;
   cursor: pointer;

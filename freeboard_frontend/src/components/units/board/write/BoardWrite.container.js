@@ -9,6 +9,7 @@ export default function BoardWrite() {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   const [errorWriter, setErrorWriter] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
@@ -21,18 +22,30 @@ export default function BoardWrite() {
 
   const OnchangeWriter = (event) => {
     setWriter(event.target.value);
+    event.target.value && password && title && content
+      ? setIsActive(true)
+      : setIsActive(false);
   };
 
   const OnchangePassword = (event) => {
     setPassword(event.target.value);
+    writer && event.target.value && title && content
+      ? setIsActive(true)
+      : setIsActive(false);
   };
 
   const OnChangeTitle = (event) => {
     setTitle(event.target.value);
+    writer && password && event.target.value && content
+      ? setIsActive(true)
+      : setIsActive(false);
   };
 
   const OnchangeContent = (event) => {
     setContent(event.target.value);
+    writer && password && title && event.target.value
+      ? setIsActive(true)
+      : setIsActive(false);
   };
 
   const OnclickRegister = async () => {
@@ -86,6 +99,7 @@ export default function BoardWrite() {
       OnChangeTitle={OnChangeTitle}
       OnchangeContent={OnchangeContent}
       OnclickRegister={OnclickRegister}
+      isActive={isActive}
     />
   );
 }

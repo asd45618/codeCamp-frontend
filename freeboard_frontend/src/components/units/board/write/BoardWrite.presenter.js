@@ -73,7 +73,10 @@ export default function BoardWriteUI(props) {
         <S.Radio type="radio" name="main" value="사진" />
         사진
       </S.WrapperContents>
-      <S.RegisterButton onClick={props.OnclickRegister}>
+      <S.RegisterButton
+        isActive={props.isActive}
+        onClick={props.OnclickRegister}
+      >
         등록하기
       </S.RegisterButton>
     </S.Wrapper>
