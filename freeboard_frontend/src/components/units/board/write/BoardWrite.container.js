@@ -1,75 +1,92 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
-import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD } from "./BoardWrite.queries";
+import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
+import BoardWriteUI from './BoardWrite.presenter'
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 
-export default function BoardWrite() {
+export default function BoardWrite(props){
+  const router = useRouter()
+  const [isActive, setIsActive] = useState(false);
+
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isActive, setIsActive] = useState(false);
+  const [contents, setContents] = useState("");
 
-  const [errorWriter, setErrorWriter] = useState("");
-  const [errorPassword, setErrorPassword] = useState("");
-  const [errorTitle, setErrorTitle] = useState("");
-  const [errorContent, setErrorContent] = useState("");
+  const [writerError, setWriterError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [contentsError, setContentsError] = useState("");
 
-  const [createBoard] = useMutation(CREATE_BOARD);
+  const [createBoard] = useMutation(CREATE_BOARD)
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const router = useRouter();
-
-  const OnchangeWriter = (event) => {
+  const onChangeWriter = (event) => {
     setWriter(event.target.value);
-    event.target.value && password && title && content
-      ? setIsActive(true)
-      : setIsActive(false);
+    if(event.target.value !== ""){
+      setWriterError("")
+    }
+
+    if (event.target.value && password && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
-  const OnchangePassword = (event) => {
+  const onChangePassword = (event) => {
     setPassword(event.target.value);
-    writer && event.target.value && title && content
-      ? setIsActive(true)
-      : setIsActive(false);
+    if(event.target.value !== ""){
+      setPasswordError("")
+    }
+
+    if (writer && event.target.value && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
-  const OnChangeTitle = (event) => {
+  const onChangeTitle = (event) => {
     setTitle(event.target.value);
-    writer && password && event.target.value && content
-      ? setIsActive(true)
-      : setIsActive(false);
+    if(event.target.value !== ""){
+      setTitleError("")
+    }
+
+    if (writer && password && event.target.value && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
-  const OnchangeContent = (event) => {
-    setContent(event.target.value);
-    writer && password && title && event.target.value
-      ? setIsActive(true)
-      : setIsActive(false);
+  const onChangeContents = (event) => {
+    setContents(event.target.value);
+    if(event.target.value !== ""){
+      setContentsError("")
+    }
+
+    if (writer && password && title && event.target.value) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
-  const OnclickRegister = async () => {
+  const onClickSubmit = async () => {
     if (!writer) {
-      setErrorWriter("작성자를 입력해 주세요.");
-    } else if (writer) {
-      setErrorWriter("");
+      setWriterError("작성자를 입력해주세요.");
     }
     if (!password) {
-      setErrorPassword("비밀번호를 입력해 주세요.");
-    } else if (password) {
-      setErrorPassword("");
+      setPasswordError("비밀번호를 입력해주세요.");
     }
     if (!title) {
-      setErrorTitle("제목을 입력해 주세요.");
-    } else if (title) {
-      setErrorTitle("");
+      setTitleError("제목을 입력해주세요.");
     }
-    if (!content) {
-      setErrorContent("내용을 입력해 주세요.");
-    } else if (content) {
-      setErrorContent("");
+    if (!contents) {
+      setContentsError("내용을 입력해주세요.");
     }
-    if (writer && password && title && content) {
+    if (writer && password && title && contents) {
       try {
         const result = await createBoard({
           variables: {
@@ -77,29 +94,50 @@ export default function BoardWrite() {
               writer,
               password,
               title,
-              contents: content,
-            },
-          },
-        });
-        console.log(result);
-        router.push(`/boards/${result.data.createBoard._id}`);
-      } catch (error) {
-        alert(error.message);
+              contents
+            }
+          }
+        })
+        console.log(result.data.createBoard._id)
+        router.push(`/boards/${result.data.createBoard._id}`)
+      } catch(error) {
+        alert(error.message)
       }
     }
   };
+
+  const onClickUpdate = async () => {
+    try {
+      const result = await updateBoard({
+        variables: {
+          boardId: router.query.boardId,
+          password,
+          updateBoardInput: {
+            title,
+            contents
+          },
+        },
+      })
+      router.push(`/boards/${result.data.updateBoard._id}`)
+    } catch(error) {
+      alert(error.message)
+    }
+  };
+
   return (
     <BoardWriteUI
-      errorWriter={errorWriter}
-      errorPassword={errorPassword}
-      errorTitle={errorTitle}
-      errorContent={errorContent}
-      OnchangeWriter={OnchangeWriter}
-      OnchangePassword={OnchangePassword}
-      OnChangeTitle={OnChangeTitle}
-      OnchangeContent={OnchangeContent}
-      OnclickRegister={OnclickRegister}
-      isActive={isActive}
+        writerError={writerError}
+        passwordError={passwordError}
+        titleError={titleError}
+        contentsError={contentsError}
+        onChangeWriter={onChangeWriter}
+        onChangePassword={onChangePassword}
+        onChangeTitle={onChangeTitle}
+        onChangeContents={onChangeContents}
+        onClickSubmit={onClickSubmit}
+        onClickUpdate={onClickUpdate}
+        isActive={isActive}
+        isEdit={props.isEdit}
     />
-  );
+  )
 }
