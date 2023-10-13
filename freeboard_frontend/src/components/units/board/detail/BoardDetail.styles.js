@@ -2,82 +2,82 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 1602px;
+  margin: 100px;
+`;
+
+export const CardWrapper = styled.div`
+  border: 1px solid black;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  padding-left: 102px;
+  padding-right: 102px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 4px 20px 0px #00000033;
+  border: none;
+  box-shadow: 0px 0px 10px gray;
 `;
 
-export const Image2 = styled.div`
-  width: 56px;
-  height: 56px;
-  background-color: gray;
-  margin-right: 12px;
-`;
-
-export const WrapperHeader = styled.div`
-  width: 1000px;
+export const Header = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #bdbdbd;
+  padding-bottom: 20px;
 `;
 
-export const HeaderInfo = styled.div`
+export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
 `;
 
-export const Writer = styled.div`
-  font-family: Noto Sans CJK KR;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: 0em;
-  text-align: left;
+export const Avatar = styled.img`
+  margin-right: 10px;
 `;
 
-export const Time = styled.div`
-  font-family: Noto Sans CJK KR;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: gray;
-`;
-
-export const WriterTime = styled.div`
-  height: 60px;
+export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
+export const Writer = styled.div``;
+
+export const CreatedAt = styled.div``;
+
 export const Body = styled.div`
-  width: 1000px;
+  width: 100%;
+  min-height: 800px;
+`;
+
+export const Title = styled.h1`
+  padding-top: 80px;
+`;
+
+export const Contents = styled.div`
+  padding-top: 40px;
+  padding-bottom: 120px;
+`;
+
+export const BottomWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 80px;
 `;
 
-export const BodyTitle = styled.div`
-  font-family: Noto Sans CJK KR;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 53px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-bottom: 30px;
-`;
+export const Button = styled.button`
+  width: 179px;
+  height: 45px;
+  background-color: white;
+  border: 1px solid gray;
+  margin: 0px 12px;
+  cursor: pointer;
 
-export const BodyContents = styled.div`
-  font-family: Noto Sans CJK KR;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
+  :hover {
+    background-color: gold;
+    border-color: white;
+  }
 `;

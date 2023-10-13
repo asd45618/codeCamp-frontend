@@ -1,22 +1,31 @@
 import * as S from "./BoardDetail.styles";
-import { getDate } from "../../../../..//src/commons/libraries/utils";
+import { getDate } from "../../../../../src/commons/libraries/utils";
 
 export default function BoardDetailUI(props) {
   return (
     <S.Wrapper>
-      <S.WrapperHeader>
-        <S.HeaderInfo>
-          <S.Image2></S.Image2>
-          <S.WriterTime>
-            <S.Writer>{props.data?.fetchBoard.writer}</S.Writer>
-            <S.Time>{getDate(props.data?.fetchBoard.createdAt)}</S.Time>
-          </S.WriterTime>
-        </S.HeaderInfo>
-      </S.WrapperHeader>
-      <S.Body>
-        <S.BodyTitle>{props.data?.fetchBoard.title}</S.BodyTitle>
-        <S.BodyContents>{props.data?.fetchBoard.contents}</S.BodyContents>
-      </S.Body>
+      <S.CardWrapper>
+        <S.Header>
+          <S.AvatarWrapper>
+            <S.Avatar src="/images/image2.png" />
+            <S.Info>
+              <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
+              <S.CreatedAt>
+                {getDate(props.data?.fetchBoard?.createdAt)}
+              </S.CreatedAt>
+            </S.Info>
+          </S.AvatarWrapper>
+        </S.Header>
+        <S.Body>
+          <S.Title>{props.data?.fetchBoard?.title}</S.Title>
+          <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+        </S.Body>
+      </S.CardWrapper>
+      <S.BottomWrapper>
+        <S.Button>목록으로</S.Button>
+        <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
+        <S.Button>삭제하기</S.Button>
+      </S.BottomWrapper>
     </S.Wrapper>
   );
 }
