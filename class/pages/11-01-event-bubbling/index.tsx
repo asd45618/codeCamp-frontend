@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { MouseEvent } from "react";
 
 const FETCH_BOARDS = gql`
   query {
@@ -14,8 +15,8 @@ const FETCH_BOARDS = gql`
 export default function StaticRoutingMovedPage() {
   const { data } = useQuery(FETCH_BOARDS);
 
-  const onClickBoard = (event: any) => {
-    alert(`${event.target.id} 님이 작성한 글입니다.`);
+  const onClickBoard = (event: MouseEvent<HTMLDivElement>) => {
+    alert(`${event.currentTarget.id}님이 작성한 글입니다.`);
   };
 
   console.log(data?.fetchBoards);
